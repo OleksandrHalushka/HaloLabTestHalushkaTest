@@ -1,0 +1,34 @@
+<template>
+    <lightning-layout>
+        <lightning-layout-item size="4" flexibility="auto">
+            <lightning-input  type="text" value={value.fieldName} onchange={fieldNameChange} required></lightning-input>
+        </lightning-layout-item>
+        <lightning-layout-item size="2" flexibility="auto">
+            <lightning-combobox value={value.fieldDataType} placeholder="Field type" options={pickListOptions} onchange={fieldTypeChange} required></lightning-combobox>
+        </lightning-layout-item>
+        <lightning-layout-item size="4" flexibility="auto" if:true={isPicklist} >
+            <lightning-input onchange={fieldValueChange}  type="text" value={value.value} required></lightning-input>
+        </lightning-layout-item>
+        <lightning-layout-item size="4" flexibility="auto" if:true={isText}>
+            <lightning-input onchange={fieldValueChange} type="number" value={value.value} max="50" required></lightning-input>
+        </lightning-layout-item>
+        <lightning-layout-item size="4" flexibility="auto" if:true={isLongTextArea}>
+            <lightning-input onchange={fieldValueChange} type="number" value={value.value} max="13100" required></lightning-input>
+        </lightning-layout-item>
+        <lightning-layout-item size="4" flexibility="auto" if:false={isEnabled}>
+            <div>
+                <lightning-input class="slds-m-top_xx-small" type="text" placeholder="Select field type..." disabled></lightning-input>
+            </div>
+        </lightning-layout-item>
+        <lightning-layout-item size="4" flexibility="auto" if:true={isCheckbox}>
+            <div>
+                <lightning-input class="slds-m-top_xx-small" type="text" placeholder="Unavailable for checkbox" disabled></lightning-input>
+            </div>
+        </lightning-layout-item>
+        <lightning-layout-item size="2" flexibility="auto">
+            <div class="slds-m-left_x-small slds-p-top_large ">
+                <lightning-button  variant="base" label="Delete" onclick={handleDelete} ></lightning-button>
+            </div>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>

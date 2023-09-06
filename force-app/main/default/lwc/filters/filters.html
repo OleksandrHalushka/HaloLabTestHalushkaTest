@@ -1,0 +1,14 @@
+<template>
+    <lightning-layout class="slds-size_1-of-2">
+        <lightning-layout-item class="slds-p-around_small slds-size_1-of-2" flexibility="auto">
+            <lightning-combobox name="caseType" label="Case Type" value={selectedCaseType} placeholder="Case Type"
+                options={caseTypes} onchange={changeCaseType}>
+            </lightning-combobox>
+        </lightning-layout-item>
+        <lightning-layout-item class="slds-p-around_small slds-size_1-of-2" flexibility="auto">
+            <lightning-combobox name="Questionnaire Name" label="Questionnaire Name" value={selectedQuestionnaireName}
+                placeholder="Questionnaire Name" options={questionnaireNames} onchange={changeQuestionnaireFilter}>
+            </lightning-combobox>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>

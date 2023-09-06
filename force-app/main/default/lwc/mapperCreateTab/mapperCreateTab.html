@@ -1,0 +1,50 @@
+<template>
+    <div>
+    <lightning-layout class="slds-size_1-of-2">
+        <lightning-layout-item class="slds-p-around_small slds-size_1-of-2" flexibility="auto">
+            <lightning-combobox name="caseType" label="Case Type" value={selectedCaseType} placeholder="Case Type"
+                options={caseTypes} onchange={changeCaseType}>
+            </lightning-combobox>
+        </lightning-layout-item>
+        <lightning-layout-item class="slds-p-around_small slds-size_1-of-2" flexibility="auto">
+            <lightning-input type="text" label="Enter name" placeholder="Enter questionnaire name" onchange={handleNameInput}></lightning-input>
+        </lightning-layout-item>
+    </lightning-layout>
+    <div if:true={isNameAttention}>
+        <p style="color: red;"> This name is already taken!  </p>
+    </div>
+    <template if:true={isData}>
+        <lightning-layout>
+            <lightning-layout-item size="4" flexibility="auto">
+                <H1 class="slds-text-title_caps"> Field Name</H1>
+            </lightning-layout-item>
+            <lightning-layout-item size="2" flexibility="auto">
+                <H1 class="slds-text-title_caps"> Field type </H1>
+            </lightning-layout-item>
+            <lightning-layout-item size="4" flexibility="auto">
+                <H1 class="slds-text-title_caps"> Parameters </H1>
+            </lightning-layout-item>
+            <lightning-layout-item size="2" flexibility="auto">
+                <H1 class="slds-text-title_caps"> Delete </H1>
+            </lightning-layout-item>
+        </lightning-layout>
+        <template for:each={rowsForRender} for:item="row">
+            <c-custom-table-row ondeletefield={deleteField} onupdatefield={updateData} key={row.fieldId} value={row.value} fieldid={row.fieldId}></c-custom-table-row>
+        </template>
+    </template>
+    </div>
+    <div class="slds-p-top_small">
+        <lightning-button variant="brand-outline" label="Add field"
+            title="Ad a new field to questionaire map" onclick={handleNewRow}></lightning-button>
+    </div>
+    <div>
+        <lightning-layout horizontal-align="end" class="slds-m-right_xx-large">
+            <lightning-layout-item>
+                <lightning-button if:true={isData} variant="brand" label="Create" title="Save changes"
+                    onclick={handleCreate}></lightning-button>
+                <lightning-button if:false={isData} variant="brand" label="Create" title="Save changes"
+                    onclick={handleCreate} disabled></lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+    </div>
+</template>

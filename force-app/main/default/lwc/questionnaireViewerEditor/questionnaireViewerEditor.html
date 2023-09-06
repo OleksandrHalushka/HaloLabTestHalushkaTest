@@ -1,0 +1,21 @@
+<template>
+    <article class="slds-card">
+
+        <c-filters onfilterchange={getFilterData}></c-filters>
+        <div class="slds-p-left_medium slds-p-right_medium">
+            <lightning-datatable onrowaction={callRowAction} key-field="id" data={data} columns={columns}>
+            </lightning-datatable>
+        </div>
+        <lightning-layout class="slds-p-top_small slds-p-bottom_small" horizontal-align="end">
+            <lightning-layout-item class="slds-p-right_xx-small">
+                <lightning-button label="Download Selected" onclick={downloadWithFilter}></lightning-button>
+            </lightning-layout-item>
+            <lightning-layout-item class="slds-p-left_xx-small slds-p-right_medium">
+                <lightning-button label="Download All" onclick={downloadAll}></lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+    </article>
+    <template if:true={isModalOpen}>
+        <c-questionnaire-viewer recordid={openedQuestionnaireId} onclosemodal={closeModal}></c-questionnaire-viewer>
+    </template>
+</template>

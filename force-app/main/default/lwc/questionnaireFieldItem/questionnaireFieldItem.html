@@ -1,0 +1,33 @@
+<template>
+
+    <lightning-textarea if:true={isText}
+        disabled 
+        value={correctedFieldName}
+        label={correctedFieldName}
+        maxlength={value}>
+    </lightning-textarea>
+
+    <lightning-textarea 
+        if:true={isLongTextArea} 
+        disabled 
+        value={correctedFieldName} 
+        label={correctedFieldName} 
+        maxlength={value}>
+    </lightning-textarea>
+
+    <lightning-combobox 
+        if:true={isPicklist}
+        label={correctedFieldName}
+        value={selectedValue} 
+        placeholder={correctedFieldName}
+        options={comboboxOptions}
+        onchange={changeCombobox}>
+    </lightning-combobox>
+
+    <lightning-input 
+        if:true={isCheckbox}
+        type="checkbox" 
+        label={correctedFieldName}>
+    </lightning-input>
+
+</template>

@@ -1,0 +1,40 @@
+<template>
+    <c-filters onfilterchange={getFilterData}></c-filters>
+    <div>
+        <H1 class="slds-text-heading_medium"> {visibleName} </H1>
+    </div>
+    
+    <div class="slds-p-top_medium">
+        <template if:true={isData}>
+            <lightning-layout>
+                <lightning-layout-item size="4" flexibility="auto">
+                    <H1 class="slds-text-title_caps"> Field Name</H1>
+                </lightning-layout-item>
+                <lightning-layout-item size="2" flexibility="auto">
+                    <H1 class="slds-text-title_caps"> Field type </H1>
+                </lightning-layout-item>
+                <lightning-layout-item size="4" flexibility="auto">
+                    <H1 class="slds-text-title_caps"> Parameters </H1>
+                </lightning-layout-item>
+                <lightning-layout-item size="2" flexibility="auto">
+                    <H1 class="slds-text-title_caps"> Delete </H1>
+                </lightning-layout-item>
+            </lightning-layout>
+            <template for:each={rowsForRender} for:item="row">
+                <c-custom-table-row ondeletefield={deleteField} onupdatefield={updateData} key={row.fieldId} value={row.value} fieldid={row.fieldId}></c-custom-table-row>
+            </template>
+        </template>
+    </div>
+    <div class="slds-p-top_small">
+        <lightning-button if:true={isData} variant="brand-outline" label="Add field" title="Ad a new field to questionaire map" onclick={handleNewRow}></lightning-button>
+        <lightning-button if:false={isData} variant="brand-outline" label="Add field" title="Ad a new field to questionaire map" onclick={handleNewRow} disabled ></lightning-button>
+    </div>
+    <div>
+        <lightning-layout horizontal-align="end" class="slds-m-right_xx-large">
+            <lightning-layout-item>
+                <lightning-button if:true={isData} variant="brand" label="Update" title="Save changes" onclick={handleUpdate}></lightning-button>
+                <lightning-button if:false={isData} variant="brand" label="Update" title="Save changes" onclick={handleUpdate} disabled></lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+    </div>
+</template>

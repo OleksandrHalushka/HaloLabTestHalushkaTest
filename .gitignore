@@ -43,3 +43,11 @@ $RECYCLE.BIN/
 **/__pycache__/
 **/.venv/
 **/venv/
+.eslintignore
+.prettierignore
+.prettierrc
+jest.config.js
+.husky/pre-commit
+.vscode/extensions.json
+.vscode/launch.json
+.vscode/settings.json
